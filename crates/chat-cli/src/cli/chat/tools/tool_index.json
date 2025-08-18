@@ -8,6 +8,24 @@
       "required": []
     }
   },
+  "help": {
+    "name": "help",
+    "description": "Get intelligent recommendations about Q CLI capabilities and tools. This tool provides self-awareness about Amazon Q's features and can recommend the best tools for specific use cases, making Q CLI more discoverable and user-friendly.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Optional: Specific question about Q CLI capabilities or tools (e.g., 'file operations', 'aws management', 'code execution')"
+        },
+        "use_case": {
+          "type": "string",
+          "description": "Optional: Describe your use case to get targeted tool recommendations (e.g., 'development', 'aws operations', 'automation')"
+        }
+      },
+      "required": []
+    }
+  },
   "execute_bash": {
     "name": "execute_bash",
     "description": "Execute the specified bash command.",
