@@ -10,13 +10,13 @@
   },
   "help": {
     "name": "help",
-    "description": "Get intelligent recommendations about Q CLI capabilities and tools. This tool provides self-awareness about Amazon Q's features and can recommend the best tools for specific use cases, making Q CLI more discoverable and user-friendly.",
+    "description": "Use this tool when users ask questions about how to use Q CLI, its features, or workflow capabilities. This includes any 'how do I...', 'how can I...', 'what's the best way to...', or 'how does Q...' questions about Q's functionality.",
     "input_schema": {
       "type": "object",
       "properties": {
         "query": {
           "type": "string",
-          "description": "Optional: Specific question about Q CLI capabilities or tools (e.g., 'file operations', 'aws management', 'code execution')"
+          "description": "The user's question about Q CLI usage, features, or capabilities"
         },
         "use_case": {
           "type": "string",
