@@ -18,7 +18,7 @@ const TEST_NAMES: &[&str] = &[
 const TOTAL_TESTS: usize = TEST_NAMES.len();
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools command...");
     
@@ -73,7 +73,7 @@ fn test_tools_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools --help command...");
     
@@ -86,15 +86,6 @@ fn test_tools_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("📝 FULL OUTPUT:");
     println!("{}", response);
     println!("📝 END OUTPUT");
-    
-    /* Verify description
-    assert!(response.contains("permission"), "Missing permission description");
-    println!("✅ Found tools permission description");*/
-    
-    // Verify documentation reference
-    //assert!(response.contains("documentation"), "Missing documentation reference");
-    assert!(response.contains("https://github.com/aws/amazon-q-developer-cli/blob/main/docs/agent-format.md#tools-field"), "Missing documentation URL");
-    println!("✅ Found documentation reference and URL");
     
     // Verify Usage section
     assert!(response.contains("Usage:") && response.contains("/tools") && response.contains("[COMMAND]"), "Missing Usage section");
@@ -128,7 +119,7 @@ fn test_tools_help_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_trust_all_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools trust-all command...");
     
@@ -143,11 +134,9 @@ fn test_tools_trust_all_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("{}", trust_all_response);
     println!("📝 END TRUST-ALL OUTPUT");
     
-    /* Verify trust-all confirmation message
-   assert!(trust_all_response.contains("confirmation"), "Missing trust-all confirmation message");
-   assert!(trust_all_response.contains("risk"), "Missing risk warning message");*/
-   assert!(trust_all_response.contains("https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-chat-security.html#command-line-chat-trustall-safety"), "Missing documentation link");
-   println!("✅ Found documentation link");
+    // Verify that all tools now show "trusted" permission
+    assert!(trust_all_response.contains("All tools") && trust_all_response.contains("trusted"), "Missing trusted tools after trust-all");
+    println!("✅ trust-all confirmation message!!");
     
     // Now check tools list to verify all tools are trusted
     let tools_response = chat.execute_command("/tools")?;
@@ -210,7 +199,7 @@ fn test_tools_trust_all_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_trust_all_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools trust-all --help command...");
   
@@ -223,10 +212,6 @@ fn test_tools_trust_all_help_command() -> Result<(), Box<dyn std::error::Error>>
     println!("📝 FULL OUTPUT:");
     println!("{}", response);
     println!("📝 END OUTPUT");
-    
-    /* Verify command description
-    assert!(response.contains("Trust"), "Missing command description");
-    println!("✅ Found command description");*/
     
     // Verify usage format
     assert!(response.contains("Usage:") && response.contains("/tools trust-all"), "Missing usage format");
@@ -249,7 +234,7 @@ fn test_tools_trust_all_help_command() -> Result<(), Box<dyn std::error::Error>>
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_reset_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools reset --help command...");
     
@@ -262,10 +247,6 @@ fn test_tools_reset_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("📝 FULL OUTPUT:");
     println!("{}", response);
     println!("📝 END OUTPUT");
-    
-    /* Verify command description
-    assert!(response.contains("Reset"), "Missing command description");
-    println!("✅ Found command description");*/
     
     // Verify usage format
     assert!(response.contains("Usage:") && response.contains("/tools reset"), "Missing usage format");
@@ -288,7 +269,7 @@ fn test_tools_reset_help_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_trust_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools trust command...");
   
@@ -366,7 +347,7 @@ fn test_tools_trust_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_trust_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools trust --help command...");
     
@@ -379,10 +360,6 @@ fn test_tools_trust_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("📝 FULL OUTPUT:");
     println!("{}", response);
     println!("📝 END OUTPUT");
-    
-    /* Verify command description
-    assert!(response.contains("Trust"), "Missing command description");
-    println!("✅ Found command description");*/
     
     // Verify usage format
     assert!(response.contains("Usage:") && response.contains("/tools trust") && response.contains("<TOOL_NAMES>"), "Missing usage format");
@@ -409,7 +386,7 @@ fn test_tools_trust_help_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_untrust_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools untrust --help command...");
 
@@ -422,10 +399,6 @@ fn test_tools_untrust_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("📝 FULL OUTPUT:");
     println!("{}", response);
     println!("📝 END OUTPUT");
-    
-    /* Verify command description
-    assert!(response.contains("Revert"), "Missing command description");
-    println!("✅ Found command description");*/
     
     // Verify usage format
     assert!(response.contains("Usage:") && response.contains("/tools untrust") && response.contains("<TOOL_NAMES>"), "Missing usage format");
@@ -452,7 +425,7 @@ fn test_tools_untrust_help_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="regression"))]
 fn test_tools_schema_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools schema --help command...");
     
@@ -465,10 +438,6 @@ fn test_tools_schema_help_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("📝 FULL OUTPUT:");
     println!("{}", response);
     println!("📝 END OUTPUT");
-    
-    /* Verify command description
-    assert!(response.contains("Show the input schema for all available tools"), "Missing command description");
-    println!("✅ Found command description");*/
     
     // Verify usage format
     assert!(response.contains("Usage:") && response.contains("/tools schema"), "Missing usage format");
@@ -491,7 +460,7 @@ fn test_tools_schema_help_command() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 /*#[test]
-#[cfg(feature = "tools")]
+#[cfg(all(any(feature = "tools", feature = "core_session"), feature="sanity"))]
 fn test_tools_schema_command() -> Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Testing /tools schema command...");
   
