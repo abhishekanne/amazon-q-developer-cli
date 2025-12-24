@@ -11,7 +11,7 @@ doc_meta:
   related: [agent-generate, cmd-agent, agent-config]
 ---
 
-# /agent
+# /agent swap
 
 Switch to different agent configuration during chat session.
 
@@ -24,7 +24,7 @@ The `/agent` command (also `/agent swap`) switches to a different agent configur
 ### Interactive Selection
 
 ```
-/agent
+/agent swap
 ```
 
 Shows picker with all available agents.

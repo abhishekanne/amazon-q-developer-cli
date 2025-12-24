@@ -11,18 +11,30 @@ doc_meta:
   related: [agent-switch, agent-config]
 ---
 
-# /agent show
+# ~~~/agent show~~~
 
-Display current agent configuration with syntax highlighting.
+~~Display current agent configuration with syntax highlighting.~~
+
+**Note: This command is not available. Use `/agent list` or `/agent` to view available agents.**
 
 ## Overview
 
-Shows complete JSON configuration of current agent with syntax highlighting. Useful for understanding agent's tools, settings, and resources.
+~~Shows complete JSON configuration of current agent with syntax highlighting. Useful for understanding agent's tools, settings, and resources.~~
+
+**This command does not exist.** Use the following alternatives:
+- `/agent list` - List all available agents
+- `/agent` - Switch to a different agent
 
 ## Usage
 
-```
+~~```
 /agent show
+```~~
+
+**Command not available.** Use these instead:
+```
+/agent list    # List all agents
+/agent         # Switch agents
 ```
 
 ## Output
